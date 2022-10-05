@@ -41,9 +41,11 @@ function Weather(props) {
       <form onSubmit={handleSearch} className="col-md-4 m-auto py-5">
         <div className="input-group mb-3">
           <input
+            // style={{ color: "black" }}
             type="text"
             name="search"
             id="search"
+            placeholder="search city"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -54,15 +56,14 @@ function Weather(props) {
           </div>
         </div>
       </form>
-      
+
       <div className="weather-status text-white text-center">
         {" "}
-        <h1>{weathers.name}</h1> 
+        <h1>{weathers.name}</h1>
         <p>{weathers.sys && weathers.sys.country}</p>
         {weathers.weather && weathers.weather[0] && (
-        <img src={getIcon(weathers.weather[0].icon)} alt="" />
-      )}
-        
+          <img src={getIcon(weathers.weather[0].icon)} alt="" />
+        )}
         {weathers.main && (
           <div>
             <h3 className="display-2">
@@ -75,8 +76,6 @@ function Weather(props) {
         {weathers.weather && weathers.weather[0] && (
           <h1>{weathers.weather[0].main}</h1>
         )}
-        
-        
       </div>
     </section>
   );
