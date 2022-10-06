@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { MdModeNight, MdWbSunny } from "react-icons/md";
+import { MdModeNight, MdWbSunny, MdFacebook } from "react-icons/md";
 const url =
   "https://api.openweathermap.org/data/2.5/weather?q=dhaka&appid=23c2fc831bf09a305c5257b045225388";
 function Weather(props) {
@@ -61,7 +61,7 @@ function Weather(props) {
       {/* <h1>{isDay.localeCompare("night")}</h1> */}
       {isDay &&
         (isDay === "day" ? (
-          <MdWbSunny style={{ width: "80px", height: "80px" }}/>
+          <MdWbSunny style={{ width: "80px", height: "80px" }} />
         ) : (
           <MdModeNight style={{ width: "80px", height: "80px" }} />
         ))}
@@ -85,6 +85,21 @@ function Weather(props) {
         {weathers.weather && weathers.weather[0] && (
           <h1>{weathers.weather[0].main}</h1>
         )}
+      </div>
+      <div className="icon-bar">
+        <a href="https://www.facebook.com/adnan.turjoy.9" className="facebook">
+          <i class="fa fa-facebook"></i>
+        </a>
+        <a href="https://github.com/AdnanTurjoy" className="twitter">
+          <i class="fa fa-github"></i>
+        </a>
+      
+        <a href="https://www.linkedin.com/in/adnan005/" className="linkedin">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="#" className="youtube">
+          <i class="fa fa-youtube"></i>
+        </a>
       </div>
     </section>
   );
