@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { MdModeNight, MdWbSunny } from "react-icons/md";
 const url =
   "https://api.openweathermap.org/data/2.5/weather?q=dhaka&appid=23c2fc831bf09a305c5257b045225388";
 function Weather(props) {
   const [weathers, setWeathers] = useState([{}]);
-
+  const [isDay, setIsDay] = useState("");
   const [search, setSearch] = useState("");
-  // useEffect(() => {
-  //   fetch(url)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data.weather[0].main);
-  //       setWeathers(data);
-  //     });
-  // }, []);
+
   const handleSearch = (e) => {
     e.preventDefault();
     fetch(
@@ -24,7 +18,18 @@ function Weather(props) {
       .then((data) => {
         console.log(data.weather[0].main);
         setWeathers(data);
+        getDay(data.weather[0].icon);
       });
+  };
+  const getDay = (day) => {
+    day = [...day];
+    if (day[2] === "d") {
+      setIsDay("day");
+    } else if (day[2] === "n") {
+      setIsDay("night");
+    } else {
+      setIsDay("");
+    }
   };
   const getKelvinToDegree = (temp) => {
     return Math.round(temp - 273);
@@ -32,10 +37,7 @@ function Weather(props) {
   const getIcon = (icon) => {
     return "http://openweathermap.org/img/wn/" + `${icon}` + "@2x.png";
   };
-  // const kelvin = 293;            weathers.main.temp
-  // // convert kelvin to celsius
-  // const celsius = kelvin - 273;
-  // console.log(`The temperature is ${celsius} degrees Celsius.`);
+
   return (
     <section className="container">
       <form onSubmit={handleSearch} className="col-md-4 m-auto py-5">
@@ -56,6 +58,13 @@ function Weather(props) {
           </div>
         </div>
       </form>
+      {/* <h1>{isDay.localeCompare("night")}</h1> */}
+      {isDay &&
+        (isDay === "day" ? (
+          <MdWbSunny style={{ width: "80px", height: "80px" }}/>
+        ) : (
+          <MdModeNight style={{ width: "80px", height: "80px" }} />
+        ))}
 
       <div className="weather-status text-white text-center">
         {" "}
